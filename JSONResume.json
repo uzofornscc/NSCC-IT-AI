@@ -1,0 +1,87 @@
+{
+    "name": "Uzo Tammy Nwokoro",
+    "label": "AI Programmer",
+    "image_path": "https://avatars.githubusercontent.com/u/105644489?v=4",
+    "intro": "Experienced AI programmer with a strong background in machine learning, deep learning, and natural language processing. Passionate about developing innovative solutions to complex problems and continuously learning new technologies.",
+    "contact": {
+        "email": "uzo.tammy@gmail.com",
+        "phone": "+1 902 830 4688",
+        "location": "Halifax, NS, Canada"
+    },
+    "profiles": [
+        {
+            "network": "Twitter",
+            "username": "john",
+            "url": "https://twitter.com/john"
+        },
+        {
+            "network": "GitHub",
+            "username": "uzotammy",
+            "url": "https://github.com/uzotammy"}
+    ],
+    "skills": [
+        "Python", "Machine Learning", "Deep Learning", "Natural Language Processing","Computer Vision", "PyTorch",
+        "Scikit-learn", "Data Processing", "Feature Engineering", "Data Visualization", "Git", "Docker", "Django",
+        "SQL", "NoSQL", "React"
+    ],
+    "experience": [
+        {
+            "company": "Tech Innovators Inc.",
+            "position": "AI Programmer",
+            "start_date": "2022-01-01",
+            "end_date": "Present",
+            "summary": "Developing and implementing AI models for various applications, including natural language processing and computer vision."
+        },
+        {
+            "company": "Data Solutions Ltd.",
+            "position": "Machine Learning Engineer",
+            "start_date": "2020-06-01",
+            "end_date": "2021-12-31",
+            "summary": "Designed and deployed machine learning models to improve data analysis and predictive capabilities for clients."
+        }
+    ],
+        "education": [
+            {
+                "institution": "Federal University of Technology",
+                "location": "Owerri, Nigeria",
+                "degree": "Bachelor of Engineering in Chemical Engineering (B.Eng.)",
+                "start_date": "1998-02-01",
+                "end_date": "2002-05-31",
+                "summary": "Graduated with a strong foundation in engineering principles, problem-solving skills, and a passion for technology and innovation."
+            },
+            {
+                "institution": "Nova Scotia Community College",
+                "location": "Halifax, NS, Canada",
+                "degree": "Certificate in Artificial Intelligence and Machine Learning",
+                "start_date": "2025-09-05",
+                "end_date": "2026-05-26",
+                "summary": "Specialized in artificial intelligence and machine learning, with a focus on developing innovative solutions to complex problems."
+            }
+        ],
+        "personal_projects": [
+            {
+                "name": "Basic CRM System",
+                "description": "Developed a SaaS-based CRM to manage daily business operations and provide customer support for a local business."
+            },
+            {
+                "name": "Image Recognition System",
+                "description": "Created a computer vision system that can identify and classify objects in images with high accuracy using deep learning algorithms."
+            },
+            {
+                "name": "A Saas-Based Chores Management System",
+                "description": "Built a SaaS-based chores management system to help families organize and track household tasks efficiently, improving productivity and communication."
+            }
+        ],
+        "certifications": [
+            {
+                "name": "Certificate in Project Management",
+                "issuer": "Coursera and Google Career Certificates",
+                "date": "2023-08-15"
+            },
+            {
+                "name": "Cybersecurity Fundamentals",
+                "issuer": "Skills for Hire",
+                "date": "2022-11-20"
+            }
+        ]
+    }
