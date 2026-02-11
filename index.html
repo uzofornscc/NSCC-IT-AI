@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uzo Tammy Nwokoro | AI Programmer Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="main-grid">
+        
+        <aside class="sidebar">
+            <div class="profile-section">
+                <img src="https://avatars.githubusercontent.com/u/105644489?v=4" alt="Uzo Tammy Nwokoro" class="profile-img">
+                <h1 id="name"></h1>
+                <p class="label" id="label"></p>
+            </div>
+
+            <div class="sidebar-block">
+                <h3>Contact</h3>
+                <div class="contact-info" id="contact"></div>
+            </div>
+
+            <div class="sidebar-block">
+                <h3>Socials</h3>
+                <div class="social-links" id="socials"></div>
+            </div>
+
+            <div class="sidebar-block">
+                <h3>Technical Skills</h3>
+                <div class="skills-container" id="skills-container"></div>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section id="about">
+                <h2><i class="fas fa-user-circle"></i> Professional Profile</h2>
+                <p id="intro" class="intro-text"></p>
+            </section>
+
+            <section id="experience">
+                <h2><i class="fas fa-briefcase"></i> Experience</h2>
+                <div id="experience-list"></div>
+            </section>
+
+            <section id="projects">
+                <h2><i class="fas fa-code-branch"></i> Personal Projects</h2>
+                <div id="projects-list" class="project-grid"></div>
+            </section>
+
+            <section id="education">
+                <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                <div id="education-list"></div>
+            </section>
+
+            <section id="certifications">
+                <h2><i class="fas fa-award"></i> Certifications</h2>
+                <div id="cert-list" class="cert-grid"></div>
+            </section>
+        </main>
+    </div>
+</div>
+
+<script>
+    const data = {
+        "name": "Uzo Tammy Nwokoro",
+        "label": "AI Programmer",
+        "intro": "Experienced AI programmer with a strong background in machine learning, deep learning, and natural language processing. Passionate about developing innovative solutions to complex problems and continuously learning new technologies.",
+        "contact": {
+            "email": "uzo.tammy@gmail.com",
+            "phone": "+1 902 830 4688",
+            "location": "Halifax, NS, Canada"
+        },
+        "profiles": [
+            { "network": "Twitter", "url": "https://twitter.com/john", "icon": "fa-twitter" },
+            { "network": "GitHub", "url": "https://github.com/uzotammy", "icon": "fa-github" }
+        ],
+        "skills": [
+            {"Python": 1}, {"Machine Learning": 1}, {"Deep Learning": 0.5}, {"Natural Language Processing": 0.35}, 
+            {"Computer Vision": 0.45}, {"PyTorch": 0.6}, {"Scikit-learn": 0.7}, {"Data Visualization": 0.8}, 
+            {"Git": 1}, {"Docker": 0.6}, {"Django": 1}, {"SQL": 0.8}, {"React": 0.9}
+        ],
+        "experience": [
+            {
+                "company": "Tech Innovators Inc.",
+                "position": "AI Programmer",
+                "dates": "2022-01-01 — Present",
+                "summary": "Developing and implementing AI models for various applications, including natural language processing and computer vision."
+            },
+            {
+                "company": "Data Solutions Ltd.",
+                "position": "Machine Learning Engineer",
+                "dates": "2020-06-01 — 2021-12-31",
+                "summary": "Designed and deployed machine learning models to improve data analysis and predictive capabilities for clients."
+            }
+        ],
+        "education": [
+            {
+                "institution": "Nova Scotia Community College",
+                "degree": "Certificate in AI and Machine Learning",
+                "dates": "2025 — 2026",
+                "summary": "Specialized in AI/ML focusing on innovative complex problem-solving."
+            },
+            {
+                "institution": "Federal University of Technology",
+                "degree": "B.Eng. in Chemical Engineering",
+                "dates": "1998 — 2002",
+                "summary": "Foundational engineering and problem-solving skills."
+            }
+        ],
+        "personal_projects": [
+            { "name": "Basic CRM System", "description": "Developed a SaaS-based CRM to manage daily business operations." },
+            { "name": "Image Recognition", "description": "High-accuracy computer vision system using deep learning." },
+            { "name": "Chores Management", "description": "SaaS-based system to organize household tasks efficiently." }
+        ],
+        "certifications": [
+            { "name": "Project Management", "issuer": "Google", "date": "2023" },
+            { "name": "Cybersecurity", "issuer": "Skills for Hire", "date": "2022" }
+        ]
+    };
+
+    // Populate Basic Info
+    document.getElementById('name').innerText = data.name;
+    document.getElementById('label').innerText = data.label;
+    document.getElementById('intro').innerText = data.intro;
+    document.getElementById('contact').innerHTML = `
+        <p><i class="fas fa-envelope"></i> ${data.contact.email}</p>
+        <p><i class="fas fa-phone"></i> ${data.contact.phone}</p>
+        <p><i class="fas fa-map-marker-alt"></i> ${data.contact.location}</p>
+    `;
+
+    // Populate Socials
+    data.profiles.forEach(p => {
+        document.getElementById('socials').innerHTML += `<a href="${p.url}" target="_blank"><i class="fab ${p.icon}"></i> ${p.network}</a>`;
+    });
+
+    // Populate Skills with Progress Bars
+    data.skills.forEach(skillObj => {
+        const name = Object.keys(skillObj)[0];
+        const val = Object.values(skillObj)[0] * 100;
+        document.getElementById('skills-container').innerHTML += `
+            <div class="skill-item">
+                <div class="skill-info"><span>${name}</span><span>${val}%</span></div>
+                <div class="progress-bg"><div class="progress-fill" style="width:${val}%"></div></div>
+            </div>`;
+    });
+
+    // Populate Experience
+    data.experience.forEach(exp => {
+        document.getElementById('experience-list').innerHTML += `
+            <div class="card">
+                <div class="card-header"><strong>${exp.position}</strong> <span>${exp.dates}</span></div>
+                <div class="sub-header">${exp.company}</div>
+                <p>${exp.summary}</p>
+            </div>`;
+    });
+
+    // Populate Projects
+    data.personal_projects.forEach(proj => {
+        document.getElementById('projects-list').innerHTML += `
+            <div class="project-card">
+                <h4>${proj.name}</h4>
+                <p>${proj.description}</p>
+            </div>`;
+    });
+
+    // Populate Education
+    data.education.forEach(edu => {
+        document.getElementById('education-list').innerHTML += `
+            <div class="card">
+                <div class="card-header"><strong>${edu.degree}</strong> <span>${edu.dates}</span></div>
+                <div class="sub-header">${edu.institution}</div>
+                <p>${edu.summary}</p>
+            </div>`;
+    });
+
+    // Populate Certs
+    data.certifications.forEach(c => {
+        document.getElementById('cert-list').innerHTML += `
+            <div class="cert-item"><strong>${c.name}</strong><br><small>${c.issuer} | ${c.date}</small></div>`;
+    });
+</script>
+</body>
+</html>
