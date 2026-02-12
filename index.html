@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,117 +9,154 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
 
-<div class="container">
-    <div class="main-grid">
-        
-        <aside class="sidebar">
-            <div class="profile-section">
-                <img src="https://avatars.githubusercontent.com/u/105644489?v=4" alt="Uzo Tammy Nwokoro" class="profile-img">
-                <h1 id="name"></h1>
-                <p class="label" id="label"></p>
-            </div>
+    <div class="container">
+        <div class="main-grid">
 
-            <div class="sidebar-block">
-                <h3>Contact</h3>
-                <div class="contact-info" id="contact"></div>
-            </div>
+            <aside class="sidebar">
+                <div class="profile-section">
+                    <img src="https://avatars.githubusercontent.com/u/105644489?v=4" alt="Uzo Tammy Nwokoro"
+                        class="profile-img">
+                    <h1 id="name"></h1>
+                    <p class="label" id="label"></p>
+                </div>
 
-            <div class="sidebar-block">
-                <h3>Socials</h3>
-                <div class="social-links" id="socials"></div>
-            </div>
+                <div class="sidebar-block">
+                    <h3>Contact</h3>
+                    <div class="contact-info" id="contact"></div>
+                </div>
 
-            <div class="sidebar-block">
-                <h3>Technical Skills</h3>
-                <div class="skills-container" id="skills-container"></div>
-            </div>
-        </aside>
+                <div class="sidebar-block">
+                    <h3>Socials</h3>
+                    <div class="social-links" id="socials"></div>
+                </div>
 
-        <main class="content">
-            <section id="about">
-                <h2><i class="fas fa-user-circle"></i> Professional Profile</h2>
-                <p id="intro" class="intro-text"></p>
-            </section>
+                <div class="sidebar-block">
+                    <h3>Technical Skills</h3>
+                    <div class="skills-container" id="skills-container"></div>
+                </div>
+            </aside>
 
-            <section id="experience">
-                <h2><i class="fas fa-briefcase"></i> Experience</h2>
-                <div id="experience-list"></div>
-            </section>
+            <main class="content">
+                <section id="about">
+                    <h2><i class="fas fa-user-circle"></i> Professional Profile</h2>
+                    <p id="intro" class="intro-text"></p>
+                </section>
 
-            <section id="projects">
-                <h2><i class="fas fa-code-branch"></i> Personal Projects</h2>
-                <div id="projects-list" class="project-grid"></div>
-            </section>
+                <section id="experience">
+                    <h2><i class="fas fa-briefcase"></i> Experience</h2>
+                    <div id="experience-list"></div>
+                </section>
 
-            <section id="education">
-                <h2><i class="fas fa-graduation-cap"></i> Education</h2>
-                <div id="education-list"></div>
-            </section>
+                <section id="projects">
+                    <h2><i class="fas fa-code-branch"></i> Personal Projects</h2>
+                    <div id="projects-list" class="project-grid"></div>
+                </section>
 
-            <section id="certifications">
-                <h2><i class="fas fa-award"></i> Online Certificate</h2>
-                <div id="cert-list" class="cert-grid"></div>
-            </section>
-        </main>
+                <section id="education">
+                    <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                    <div id="education-list"></div>
+                </section>
+
+                <section id="certifications">
+                    <h2><i class="fas fa-award"></i> Online Certificate</h2>
+                    <div id="cert-list" class="cert-grid"></div>
+                </section>
+            </main>
+        </div>
     </div>
-</div>
 
-<script type="module">
-    import data from './JSONResume.json' with { type: 'json' };
-    
-    // Populate Basic Info
-    document.getElementById('name').innerText = data.name;
-    document.getElementById('label').innerText = data.label;
-    document.getElementById('intro').innerText = data.intro;
-    document.getElementById('contact').innerHTML = `
+    <script type="module">
+        import data from './JSONResume.json' with { type: 'json' };
+
+        const fmtDate = (dateStr) => {
+            const options = { year: 'numeric', month: 'short' };
+            return new Date(dateStr).toLocaleDateString('en-US', options);
+        };
+
+        // categorize relevant sections
+        // skills should be categorized into basic (0 - 0.3), developing (0.31 - 0.59), Average (0.6 - 0.85), and expert (0.86 - 1.0) based on the level value
+        const rateSkill = (level) => {
+            let category;
+            switch (true) {
+                case level <= 0.3:
+                    category = 'Basic';
+                    break;
+                case level <= 0.59:
+                    category = 'Developing';
+                    break;
+                case level <= 0.85:
+                    category = 'Average';
+                    break;
+                case level <= 1.0:
+                    category = 'Expert';
+                    break;
+                default:
+                    category = 'unknown';
+            }
+            return category;
+        };
+
+        // how do i sort an array
+        data.skills.sort((a, b) => {
+            const aVal = Object.values(a)[0];
+            const bVal = Object.values(b)[0];
+            return bVal - aVal; // sort in descending order
+        });
+
+        // Populate Basic Info
+        document.getElementById('name').innerText = data.name;
+        document.getElementById('label').innerText = data.label;
+        document.getElementById('intro').innerText = data.intro;
+        document.getElementById('contact').innerHTML = `
         <p><i class="fas fa-envelope"></i> ${data.contact.email}</p>
         <p><i class="fas fa-phone"></i> ${data.contact.phone}</p>
         <p><i class="fas fa-map-marker-alt"></i> ${data.contact.location}</p>
     `;
 
-    // Populate Socials
-    data.profiles.forEach(p => {
-        document.getElementById('socials').innerHTML += `<a href="${p.url}" target="_blank"><i class="fab ${p.icon}"></i> ${p.network}</a>`;
-    });
+        // Populate Socials
+        data.profiles.forEach(p => {
+            document.getElementById('socials').innerHTML += `<a href="${p.url}" target="_blank"><i class="fab ${p.icon}"></i> ${p.network}</a>`;
+        });
 
-    // Populate Skills with Progress Bars
-    data.skills.forEach(skillObj => {
-        const name = Object.keys(skillObj)[0];
-        const val = Object.values(skillObj)[0] * 100;
-        document.getElementById('skills-container').innerHTML += `
+        // Populate Skills with Progress Bars
+        data.skills.forEach(skillObj => {
+            const name = Object.keys(skillObj)[0];
+            const val = Math.round(skillObj[name] * 100);
+            const category = rateSkill(val / 100);
+            document.getElementById('skills-container').innerHTML += `
             <div class="skill-item">
-                <div class="skill-info"><span>${name}</span><span>${val}%</span></div>
+                <div class="skill-info"><span>${name}</span><span>${category}</span></div>
                 <div class="progress-bg"><div class="progress-fill" style="width:${val}%"></div></div>
             </div>`;
-    });
+        });
 
-    // Populate Experience
-    data.experience.forEach(exp => {
-        // Date format to something more readable (e.g., Jan 2022 - Present)
-        // Display only the year and month only, not the day
-        document.getElementById('experience-list').innerHTML += `
+        // Populate Experience
+        data.experience.forEach(exp => {
+            // Date format to something more readable (e.g., Jan 2022 - Present)
+            // Display only the year and month only, not the day
+            document.getElementById('experience-list').innerHTML += `
             <div class="card">
-                <div class="card-header"><strong>${exp.position}</strong> <span>${new Date(exp.startDate).toLocaleDateString('en-CA', { month: 'short', year: 'numeric' })} - ${
-                    exp.endDate === "Present" ? "Present" : new Date(exp.endDate).toLocaleDateString('en-CA', { month: 'short', year: 'numeric' })}</span></div>
+                <div class="card-header"><strong>${exp.position}</strong> <span>${new Date(exp.startDate).toLocaleDateString('en-CA', { month: 'short', year: 'numeric' })} - ${exp.endDate === "Present" ? "Present" : new Date(exp.endDate).toLocaleDateString('en-CA', { month: 'short', year: 'numeric' })}</span></div>
                 <div class="sub-header">${exp.company}</div>
                 <p>${exp.summary}</p>
             </div>`;
-    });
+        });
 
-    // Populate Projects
-    data.personal_projects.forEach(proj => {
-        document.getElementById('projects-list').innerHTML += `
+        // Populate Projects
+        data.personal_projects.forEach(proj => {
+            document.getElementById('projects-list').innerHTML += `
             <div class="project-card">
                 <h4>${proj.name}</h4>
                 <p>${proj.description}</p>
             </div>`;
-    });
+        });
 
-    // Populate Education
-    data.education.forEach(edu => {
-        document.getElementById('education-list').innerHTML += `
+        // Populate Education
+        data.education.forEach(edu => {
+            document.getElementById('education-list').innerHTML += `
             <div class="card">
                 <div class="card-header"><strong>${edu.degree}</strong> 
                     <span>${new Date(edu.startDate).toLocaleDateString('en-CA', { month: 'short', year: 'numeric' })} - 
@@ -126,14 +164,15 @@
                 <div class="sub-header">${edu.institution}</div>
                 <p>${edu.summary}</p>
             </div>`;
-    });
+        });
 
-    // Populate Certs
-    // date should be displayed as Year-Month-Day
-    data.onlineCert.forEach(c => {
-        document.getElementById('cert-list').innerHTML += `
+        // Populate Certs
+        // date should be displayed as Year-Month-Day
+        data.onlineCert.forEach(c => {
+            document.getElementById('cert-list').innerHTML += `
             <div class="cert-item"><strong>${c.name}</strong><br><small>${c.issuer} | ${new Date(c.dateIssued).toLocaleDateString('en-CA', { month: 'short', year: 'numeric' })}</small></div>`;
-    });
-</script>
+        });
+    </script>
 </body>
+
 </html>
