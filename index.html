@@ -69,6 +69,7 @@
     </div>
 
     <script type="module">
+        
         import data from './JSONResume.json' with { type: 'json' };
 
         const fmtDate = (dateStr) => {
@@ -139,7 +140,7 @@
             // Display only the year and month only, not the day
             document.getElementById('experience-list').innerHTML += `
             <div class="card">
-                <div class="card-header"><strong>${exp.position}</strong> <span>${new Date(exp.startDate).toLocaleDateString('en-CA', { month: 'short', year: 'numeric' })} - ${exp.endDate === "Present" ? "Present" : new Date(exp.endDate).toLocaleDateString('en-CA', { month: 'short', year: 'numeric' })}</span></div>
+                <div class="card-header"><strong>${exp.position}</strong> <span>${fmtDate(exp.startDate)} - ${exp.endDate === "Present" ? "Present" : fmtDate(exp.endDate)}</span></div>
                 <div class="sub-header">${exp.company}</div>
                 <p>${exp.summary}</p>
             </div>`;
@@ -159,8 +160,8 @@
             document.getElementById('education-list').innerHTML += `
             <div class="card">
                 <div class="card-header"><strong>${edu.degree}</strong> 
-                    <span>${new Date(edu.startDate).toLocaleDateString('en-CA', { month: 'short', year: 'numeric' })} - 
-                        ${edu.endDate ? new Date(edu.endDate).toLocaleDateString('en-CA', { month: 'short', year: 'numeric' }) : "Present"}</span></div>
+                    <span>${fmtDate(edu.startDate)} - 
+                        ${edu.endDate ? fmtDate(edu.endDate) : "Present"}</span></div>
                 <div class="sub-header">${edu.institution}</div>
                 <p>${edu.summary}</p>
             </div>`;
@@ -170,7 +171,7 @@
         // date should be displayed as Year-Month-Day
         data.onlineCert.forEach(c => {
             document.getElementById('cert-list').innerHTML += `
-            <div class="cert-item"><strong>${c.name}</strong><br><small>${c.issuer} | ${new Date(c.dateIssued).toLocaleDateString('en-CA', { month: 'short', year: 'numeric' })}</small></div>`;
+            <div class="cert-item"><strong>${c.name}</strong><br><small>${c.issuer} | ${fmtDate(c.dateIssued)}</small></div>`;
         });
     </script>
 </body>

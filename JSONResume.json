@@ -21,7 +21,7 @@
     ],
     "skills": [{"Python": 0.9}, {"Machine Learning": 0.6}, {"Deep Learning": 0.5}, {"Natural Language Processing": 0.1}, 
     {"Computer Vision": 0.45}, {"PyTorch": 0.6}, {"Scikit-learn": 0.7}, {"Data Processing": 0.6}, {"Feature Engineering": 0.7}, 
-    {"Data Visualization": 0.8}, {"Git": 0.9}, {"Docker": 0.6}, {"Django": 0.95}, {"SQL": 0.8}, {"NoSQL": 0.5}, {"React": 0.7}
+    {"Data Visualization": 0.8}, {"Git": 0.9}, {"Docker": 0.5}, {"Django": 0.95}, {"SQL": 0.8}, {"NoSQL": 0.5}, {"React": 0.7}
     ],
     "experience": [
         {
